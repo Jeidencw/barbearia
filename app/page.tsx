@@ -11,6 +11,11 @@ import BarberShopItem from "./_components/BarberShopItem";
 
 const Home = async () => {
     const barberShops = await db.barberShop.findMany({});
+    const popularBarberShops = await db.barberShop.findMany({
+        orderBy: {
+            name: "desc",
+        },
+    });
 
     return (
         <div className="">
@@ -23,6 +28,58 @@ const Home = async () => {
                     <Input placeholder="Faça sua busca..." />
                     <Button>
                         <SearchIcon />
+                    </Button>
+                </div>
+
+                <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+                    <Button className="gap-2" variant="secondary">
+                        <Image
+                            src="./cabelo.svg"
+                            alt="icone cabelo"
+                            width={16}
+                            height={16}
+                        />
+                        Cabelo
+                    </Button>
+
+                    <Button className="gap-2" variant="secondary">
+                        <Image
+                            src="./barba.svg"
+                            alt="icone barba"
+                            width={16}
+                            height={16}
+                        />
+                        Barva
+                    </Button>
+
+                    <Button className="gap-2" variant="secondary">
+                        <Image
+                            src="./acabamento.svg"
+                            alt="icone acabamento"
+                            width={16}
+                            height={16}
+                        />
+                        Acabamento
+                    </Button>
+
+                    <Button className="gap-2" variant="secondary">
+                        <Image
+                            src="./acabamento.svg"
+                            alt="icone acabamento"
+                            width={16}
+                            height={16}
+                        />
+                        Acabamento
+                    </Button>
+
+                    <Button className="gap-2" variant="secondary">
+                        <Image
+                            src="./acabamento.svg"
+                            alt="icone acabamento"
+                            width={16}
+                            height={16}
+                        />
+                        Acabamento
                     </Button>
                 </div>
 
@@ -75,7 +132,31 @@ const Home = async () => {
                         />
                     ))}
                 </div>
+
+                <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+                    Populares
+                </h2>
+
+                <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+                    {popularBarberShops.map((popularBarberShop) => (
+                        <BarberShopItem
+                            key={popularBarberShop.id}
+                            barberShop={popularBarberShop}
+                        />
+                    ))}
+                </div>
             </div>
+
+            <footer>
+                <Card className="rounded-none">
+                    <CardContent className="px-5 py-6">
+                        <p className="text-sm text-gray-400">
+                            © 2023 Copyright{" "}
+                            <span className="font-bold">FSW Barber</span>
+                        </p>
+                    </CardContent>
+                </Card>
+            </footer>
         </div>
     );
 };
