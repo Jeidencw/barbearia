@@ -43,7 +43,7 @@ const Home = async () => {
                                 width={16}
                                 height={16}
                             />
-                            Cabelo
+                            {option.name}
                         </Button>
                     ))}
                 </div>
