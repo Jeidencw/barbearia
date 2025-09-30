@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "sonner";
+import Footer from "./_components/Footer";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -13,7 +15,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-br" className="dark">
-            <body className={`antialiased`}>{children}</body>
+            <body className={`antialiased`}>
+                {children}
+
+                <Toaster />
+
+                <Footer />
+            </body>
         </html>
     );
 }
