@@ -6,6 +6,7 @@ import BarberShopItem from "./_components/BarberShopItem";
 import { quickSearchOptions } from "./_constants/search";
 import BookingItem from "./_components/BookingItem";
 import Search from "./_components/Search";
+import Link from "next/link";
 
 const Home = async () => {
     const barberShops = await db.barberShop.findMany({});
@@ -32,14 +33,17 @@ const Home = async () => {
                             className="gap-2"
                             variant="secondary"
                             key={option.title}
+                            asChild
                         >
-                            <Image
-                                src={option.imageUrl}
-                                alt={option.title}
-                                width={16}
-                                height={16}
-                            />
-                            {option.name}
+                            <Link href={`/barbershops?search=${option.name}`}>
+                                <Image
+                                    alt={option.title}
+                                    src={option.imageUrl}
+                                    width={16}
+                                    height={16}
+                                />
+                                {option.name}
+                            </Link>
                         </Button>
                     ))}
                 </div>
